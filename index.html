@@ -4,8 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+    <div class="text-label">current resin</div>
+    <input class="current-resin" type="number"  > 
     
+    <div class="text-label">target resin:</div>
+    <div class="button-container">
+   
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="20" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="40" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="60" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="80" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="100" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="120" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="140" />
+    <input type="button" class="number-button"  onclick="numberClick(this.value)" value="160" />
+
+    </div>
+    
+    <input class="target-resin" type="number">
+    
+    <input type="button" class="calculate"  onclick="calculateResin()" value="calculate" />
+
+    <div class="text-label">Your resin will be at the target at:</div>
+    <div class="final-time"></div>
+    <div class="text-label">time left:</div>
+    <div class="time-left"> </div>
+
+    <script src="script.js"> </script>
 </body>
 </html>
