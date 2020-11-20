@@ -1,0 +1,54 @@
+body{
+ 
+    background-image: url("resin.png");
+}
+.container{
+    position:absolute;
+    width:400px;
+    height:230px;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -200px;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding-left:10px;
+    padding-right:10px;
+
+}
+
+.text-container{
+    display:flex;
+    margin-bottom:2px
+}
+.text-label, 
+.final-time,
+.time-left{
+    font-size:1.4em;
+}
+
+.button-container{
+    display:flex;
+   justify-content: space-around;
+    margin:10px 0  20px 0;
+}
+.number-button{
+    font-size: 1em;
+    flex-basis: 45px;
+}
+.note{
+    margin-top: 10px;
+}
+.timer{
+    justify-content: center;
+    margin-top:10px;
+}
+.cr{
+    margin-bottom:5px;
+}
+.target-resin{
+    margin-right:4px;
+    
+}

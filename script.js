@@ -11,6 +11,7 @@ var currentResinValue=0;
 var targetResinValue=0;
 var currentTime= Date();
 var finalTime;
+var x="first";
 
 function numberClick(num){
     
@@ -20,35 +21,74 @@ function numberClick(num){
 }
 
 function calculateResin(){
-
+    if(x!=="first"){
+    clearInterval(x);
+    }
+    
     //calculate time left until resin refreshes
     currentResinValue =currentResin.value;
+    targetResinValue=targetResin.value;
     let difference = targetResinValue-currentResinValue;
     let totalMin = difference*8;
     let hour = parseInt(totalMin/ 60);
     let min=totalMin%60;
     let remainingTime= `${hour}hr ${min}min`;
-    timeLeft.innerHTML=remainingTime;
+    
 
     //tells time that the resin will be done recharging
+    
     let currentTime= new Date();
     let newHour=parseInt(currentTime.getHours())+hour;
     let newMin=parseInt(currentTime.getMinutes())+min;
-    console.log(newMin);
-    if(newHour>=24){
-        newHour=newHour-24;
-    }
-    if(newMin>=60){
-        newHour++;
-        newMin=newMin-60;
-    }
-    if(newMin<10){
-        finalTime.innerHTML=`${newHour}:0${newMin}`;
-    }else{
-    finalTime.innerHTML=`${newHour}:${newMin}`;
+    let countDownTimer=new Date(currentTime.setTime(currentTime.getTime()+(3600*1000*hour)+(60000*min)));
+  
+    finalTime.innerHTML=`${countDownTimer.getHours()}:${countDownTimer.getMinutes()}`;
+    if(countDownTimer.getMinutes()<10){
+        finalTime.innerHTML=`${countDownTimer.getHours()}:0${countDownTimer.getMinutes()}`;
+
     }
     
-
+    timer=true;
+    countDown(countDownTimer);
     
 
 }
+function countDown(time){
+    let countDownDate= new Date(time);
+    //when is x invoked?
+    x=setInterval(function(){
+        if(timer==false){
+            clearInterval(x);
+        }
+        //find diff between now and countdown 
+        let now= new Date();
+        var distance= countDownDate-now;
+         // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        //write on to html
+        timeLeft.innerHTML=`${hours}:${minutes}:${seconds}`;
+
+        //make timer red
+        if(distance <= 480000){
+            timeLeft.style.color="red";
+        }
+      
+
+
+        // If the count down is finished, write some text
+  if (distance < 0) {
+    timeLeft.innerHTML="Done!";
+    clearInterval(x);
+    
+    alert("Time to grind!")
+  }
+
+
+    },1000);
+   
+
+}
+

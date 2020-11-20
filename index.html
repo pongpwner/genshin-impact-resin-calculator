@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Genshin Impact Resin Calculator</title>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="text-label">current resin</div>
+    
+    <div class="container">
+        
+        <div class="text-container cr">
+    <div class="text-label">Current resin:</div>
+    
     <input class="current-resin" type="number"  > 
     
-    <div class="text-label">target resin:</div>
+   
+    </div>
+    <div class="text-container">
+        <div class="text-label">Target resin:</div>
+    <input class="target-resin" type="number">
+    
+    <input type="button" class="calculate"  onclick="calculateResin()" value="calculate" />
+    </div>
+
     <div class="button-container">
    
     <input type="button" class="number-button"  onclick="numberClick(this.value)" value="20" />
@@ -23,15 +36,19 @@
     <input type="button" class="number-button"  onclick="numberClick(this.value)" value="160" />
 
     </div>
-    
-    <input class="target-resin" type="number">
-    
-    <input type="button" class="calculate"  onclick="calculateResin()" value="calculate" />
 
-    <div class="text-label">Your resin will be at the target at:</div>
+    
+
+    <div class="text-container">
+    <div class="text-label">Your resin will reach the target at: </div>
     <div class="final-time"></div>
-    <div class="text-label">time left:</div>
+    </div>
+    <div class="text-container timer">
+    <div class="text-label">Countdown: </div>
     <div class="time-left"> </div>
+    </div>
+    <div class="note">note: Your resin could recharge up to 8 minutes faster than the time shown!  This is just an estimate. </div>
+    </div>
 
     <script src="script.js"> </script>
 </body>
