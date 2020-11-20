@@ -25,6 +25,7 @@ function calculateResin(){
     clearInterval(x);
     
     }
+    document.querySelector(".tr").style.display="flex";
     timeLeft.style.color="black";
     //calculate time left until resin refreshes
     currentResinValue =currentResin.value;
@@ -33,19 +34,22 @@ function calculateResin(){
     let totalMin = difference*8;
     let hour = parseInt(totalMin/ 60);
     let min=totalMin%60;
-    let remainingTime= `${hour}hr ${min}min`;
+
     
 
     //tells time that the resin will be done recharging
     
     let currentTime= new Date();
-    let newHour=parseInt(currentTime.getHours())+hour;
-    let newMin=parseInt(currentTime.getMinutes())+min;
     let countDownTimer=new Date(currentTime.setTime(currentTime.getTime()+(3600*1000*hour)+(60000*min)));
   
-    finalTime.innerHTML=`${countDownTimer.getHours()}:${countDownTimer.getMinutes()}`;
+    finalTime.innerHTML=` ${countDownTimer.getHours()}:${countDownTimer.getMinutes()}`;
     if(countDownTimer.getMinutes()<10){
-        finalTime.innerHTML=`${countDownTimer.getHours()}:0${countDownTimer.getMinutes()}`;
+        finalTime.innerHTML=` ${countDownTimer.getHours()}:0${countDownTimer.getMinutes()}`;
+
+    }
+    if(hour>=24){
+        finalTime.innerHTML=countDownTimer;
+        document.querySelector(".tr").style.display="block";
 
     }
     
@@ -70,7 +74,11 @@ function countDown(time){
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         //write on to html
-        timeLeft.innerHTML=`${hours}:${minutes}:${seconds}`;
+        if(days>0){
+        timeLeft.innerHTML=` ${days}:${hours}:${minutes}:${seconds}`;
+        }else{
+        timeLeft.innerHTML=` ${hours}:${minutes}:${seconds}`;
+        }
 
         //make timer red
         if(distance <= 480000){
