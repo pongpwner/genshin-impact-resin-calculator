@@ -23,6 +23,7 @@ function numberClick(num){
 function calculateResin(){
     if(x!=="first"){
     clearInterval(x);
+    timeLeft.style.color="black";
     }
     
     //calculate time left until resin refreshes
