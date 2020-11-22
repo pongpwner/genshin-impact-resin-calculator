@@ -14,6 +14,7 @@ var currentTime= Date();
 var finalTime;
 var x="first"; //first means first iteration or first button press
 var resinCount;  //added this new variable to represent current resin.  
+var resinCap=160;
 
 function numberClick(num){
     
@@ -62,6 +63,7 @@ function calculateResin(){
     
     
     countDown(countDownTimer);
+    setTimeout(incrementResin, 480000); // updates resin counter
     
 
 }
@@ -78,17 +80,15 @@ function countDown(time){
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
         //write on to html
         if(days>0){
         timeLeft.innerHTML=` ${days}:${hours}:${minutes}:${seconds}`;
         }else{
         timeLeft.innerHTML=` ${hours}:${minutes}:${seconds}`;
         }
-
-        //increments current resin
-        if(distance % 480000==0){
-            incrementResin();
-        }
+        
+        
 
         //make timer red
         if(distance <= 480000){
@@ -102,7 +102,7 @@ function countDown(time){
     timeLeft.innerHTML="Done!";
     clearInterval(x);
     
-    alert("Time to grind!")
+    
   }
 
 
@@ -114,5 +114,11 @@ function countDown(time){
 function incrementResin(){
     resinCount++;
     resinCounter.innerHTML=resinCount;
+    if(resinCount<resinCap){
+        setTimeout(incrementResin, 480000);
+    }
+    
+    
+
 }
 
