@@ -1,17 +1,19 @@
 // linking the html elements
-var currentResin= document.querySelector(".current-resin");
+var startingResin= document.querySelector(".starting-resin");
 var numberButton=document.querySelector(".number-button");
 var targetResin= document.querySelector(".target-resin");
 var finalTime= document.querySelector(".final-time");
 var timeLeft= document.querySelector(".time-left");
 var calculate=document.querySelector(".calculate");
+var resinCounter=document.querySelector(".resin-count");
 
 // js variables
-var currentResinValue=0;
+var startingResinValue=0; //starting resin
 var targetResinValue=0;
 var currentTime= Date();
 var finalTime;
-var x="first";
+var x="first"; //first means first iteration or first button press
+var resinCount;  //added this new variable to represent current resin.  
 
 function numberClick(num){
     
@@ -25,12 +27,17 @@ function calculateResin(){
     clearInterval(x);
     
     }
-    document.querySelector(".tr").style.display="flex";
+    document.querySelector(".tr").style.display="flex"; // revert back to former layout if it was on the day layout
     timeLeft.style.color="black";
     //calculate time left until resin refreshes
-    currentResinValue =currentResin.value;
+    startingResinValue =startingResin.value;
+    resinCount=startingResinValue;
+    if(resinCount.length==0){
+        resinCount=0;
+    }
+    resinCounter.innerHTML=`${resinCount}`;
     targetResinValue=targetResin.value;
-    let difference = targetResinValue-currentResinValue;
+    let difference = targetResinValue-startingResinValue;
     let totalMin = difference*8;
     let hour = parseInt(totalMin/ 60);
     let min=totalMin%60;
@@ -53,7 +60,7 @@ function calculateResin(){
 
     }
     
-    timer=true;
+    
     countDown(countDownTimer);
     
 
@@ -62,9 +69,7 @@ function countDown(time){
     let countDownDate= new Date(time);
     //when is x invoked?
     x=setInterval(function(){
-        if(timer==false){
-            clearInterval(x);
-        }
+      
         //find diff between now and countdown 
         let now= new Date();
         var distance= countDownDate-now;
@@ -78,6 +83,11 @@ function countDown(time){
         timeLeft.innerHTML=` ${days}:${hours}:${minutes}:${seconds}`;
         }else{
         timeLeft.innerHTML=` ${hours}:${minutes}:${seconds}`;
+        }
+
+        //increments current resin
+        if(distance % 480000==0){
+            incrementResin();
         }
 
         //make timer red
@@ -99,5 +109,10 @@ function countDown(time){
     },1000);
    
 
+}
+
+function incrementResin(){
+    resinCount++;
+    resinCounter.innerHTML=resinCount;
 }
 

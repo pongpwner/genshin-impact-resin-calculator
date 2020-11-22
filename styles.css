@@ -26,7 +26,8 @@ body{
 }
 .text-label, 
 .final-time,
-.time-left{
+.time-left,
+.resin-count{
     font-size:1.4em;
 }
 
@@ -52,5 +53,8 @@ body{
 .target-resin{
     margin-right:4px;
     
+}
+.text-label{
+    padding-right: 3px;
 }
 
